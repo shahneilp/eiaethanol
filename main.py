@@ -6,9 +6,8 @@ Created on Fri Oct  9 17:47:13 2020
 """
 
 import pandas as pd
+from flask import Flask
 
-
-import pandas as pd
 
 #Overall Stats
 blendurl='https://api.grainstats.com/eia/blended_ethanol.json'
@@ -86,7 +85,7 @@ print(df.transpose())
 print(proddf.transpose())
 print(stocksdf.transpose())
 test=df.join(proddf,how='outer')
-from flask import Flask
+
 app = Flask(__name__)
 
 @app.route("/EIA")
