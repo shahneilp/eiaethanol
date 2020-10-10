@@ -88,7 +88,7 @@ test=df.join(proddf,how='outer')
 
 app = Flask(__name__)
 
-@app.route("/EIA")
+@app.route("/")
 def eia ():
     overall= df.transpose().to_html(justify='center')
     production=proddf.transpose().to_html() 
