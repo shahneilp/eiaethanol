@@ -4,7 +4,7 @@ Created on Fri Oct  9 17:47:13 2020
 
 @author: Neil
 """
-
+import os
 import pandas as pd
 from flask import Flask
 
@@ -103,5 +103,6 @@ def eia ():
 
 
   
-if __name__ == '__main__':
-  app.run(host='0.0.0.0')
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
