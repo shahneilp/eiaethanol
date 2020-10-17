@@ -9,7 +9,7 @@ import pandas as pd
 from flask import Flask
 from datetime import datetime, date
 
-timestamp=datetime.now().strftime('%m/%d/%Y-%H:%M:%S')
+timestamp = datetime.now().strftime('%m/%d/%Y-%H:%M:%S')
 
 # Overall Stats
 blendurl = 'https://api.grainstats.com/eia/blended_ethanol.json'
@@ -80,9 +80,9 @@ stocksdf.drop(['country', 'uom', 'region', 'statistic', 'last_week', 'location',
 stocksdf.reindex(['value', 'week_change', 'survey date'])
 stocksdf = stocksdf.reindex(['value', 'week_change', 'survey date'])
 
-#print(df.transpose())
-#print(proddf.transpose())
-#print(stocksdf.transpose())
+# print(df.transpose())
+# print(proddf.transpose())
+# print(stocksdf.transpose())
 
 
 app = Flask(__name__)
@@ -97,8 +97,9 @@ def eia():
     title = '<head>' + '<title>' + 'Weekly EIA Ethanol Survey' + '</title> ' + '</head>'
     body = '<h2> Overall Ethanol Breakdown </h2>' + overall + ' <h2> Production Breakdown </h2> ' + production + '<h2> Stocks Breakdown </h2>' + stocks
     update = '<br>' + 'Last Updated: ' + last_updated + '<br>'
-    foot = 'Powered by: <a href="https://twitter.com/GrainStats">GrainStats</a> and Made by: <a href="https://twitter.com/shah_neil">Neil Shah</a>'
-    html = title + '<center>' + style + body + update + foot + '<br>' +timestamp + '</center>'
+    foot = 'Powered by: <a href="https://twitter.com/GrainStats">GrainStats</a> and Made by: <a ' \
+           'href="https://twitter.com/shah_neil">Neil Shah</a> '
+    html = title + '<center>' + style + body + update + foot + '<br>' + timestamp + '</center>'
     return html
 
 
