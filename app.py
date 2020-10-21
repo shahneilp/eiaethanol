@@ -100,7 +100,7 @@ def eia():
     update = '<br>' + 'Last Updated: ' + last_updated + '<br>'
     foot = 'Powered by: <a href="https://twitter.com/GrainStats">GrainStats</a> and Made by: <a ' \
            'href="https://twitter.com/shah_neil">Neil Shah</a> '
-    html = title + '<center>' + style + body + update + foot + '<br>' + 'Loaded '+ timestamp + '</center>'
+    html = title + '<center>' + style + body + update + foot + '<br>' + 'Loaded ' + timestamp + '</center>'
     return html
 
 
