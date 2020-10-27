@@ -25,6 +25,7 @@ blend = pd.read_json(blendurl, orient='index')
 gas = pd.read_json(gasurl, orient='index')
 imports = pd.read_json(importurl, orient='index')
 
+survey=prod.loc['survey date'][0]
 last_updated = str(prod.loc['last updated'][0])
 
 col_names = ['Production', 'Stocks', 'Blend', 'Gasoline', 'Imports']
@@ -32,8 +33,8 @@ df_list = [prod, stocks, blend, gas, imports]
 df = pd.concat(df_list, axis=1)
 df.columns = col_names
 df.drop(['country', 'uom', 'region', 'statistic', 'last_week', 'location', 'last updated'], axis=0, inplace=True)
-df.reindex(['value', 'week_change', 'survey date'])
-df = df.reindex(['value', 'week_change', 'survey date'])
+df.reindex(['value', 'week_change'])
+df = df.reindex(['value', 'week_change'])
 # Production Granular
 
 padd1produrl = 'https://api.grainstats.com/eia/ethanol_production_padd_1.json'
@@ -54,8 +55,8 @@ df_list = [prod, padd1prod, padd2prod, padd3prod, padd4prod, padd5prod]
 proddf = pd.concat(df_list, axis=1)
 proddf.columns = prod_names
 proddf.drop(['country', 'uom', 'region', 'statistic', 'last_week', 'location', 'last updated'], axis=0, inplace=True)
-proddf.reindex(['value', 'week_change', 'survey date'])
-proddf = proddf.reindex(['value', 'week_change', 'survey date'])
+proddf.reindex(['value', 'week_change'])
+proddf = proddf.reindex(['value', 'week_change'])
 
 # Stocks
 
@@ -78,8 +79,8 @@ df_list = [stocks, padd1stocks, padd2stocks, padd3stocks, padd4stocks, padd5stoc
 stocksdf = pd.concat(df_list, axis=1)
 stocksdf.columns = stocks_names
 stocksdf.drop(['country', 'uom', 'region', 'statistic', 'last_week', 'location', 'last updated'], axis=0, inplace=True)
-stocksdf.reindex(['value', 'week_change', 'survey date'])
-stocksdf = stocksdf.reindex(['value', 'week_change', 'survey date'])
+stocksdf.reindex(['value', 'week_change'])
+stocksdf = stocksdf.reindex(['value', 'week_change'])
 
 # print(df.transpose())
 # print(proddf.transpose())
@@ -95,7 +96,7 @@ def eia():
     production = proddf.transpose().to_html()
     stocks = stocksdf.transpose().to_html()
     style = '<style> table {text-align: center;} table thead th {text-align: center;} </style>'
-    title = '<head>' + '<title>' + 'Weekly EIA Ethanol Survey' + '</title> ' + '</head>'
+    title = '<head>' + '<title>' + 'Weekly EIA Ethanol Survey for ' + str(survey) + '</title> ' + '</head>'
     body = '<h2> Overall Ethanol Breakdown </h2>' + overall + ' <h2> Production Breakdown </h2> ' + production + '<h2> Stocks Breakdown </h2>' + stocks
     update = '<br>' + 'Last Updated: ' + last_updated + '<br>'
     foot = 'Powered by: <a href="https://twitter.com/GrainStats">GrainStats</a> and Made by: <a ' \
