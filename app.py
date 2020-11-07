@@ -5,10 +5,11 @@ Created on Fri Oct  9 17:47:13 2020
 @author: Neil
 """
 import os
+from datetime import datetime
+
 import pandas as pd
-from flask import Flask
-from datetime import datetime, date
 import pytz
+from flask import Flask
 
 timestamp = datetime.now(tz=pytz.timezone('US/Central')).strftime('%m/%d/%Y-%H:%M:%S')
 
@@ -25,7 +26,7 @@ blend = pd.read_json(blendurl, orient='index')
 gas = pd.read_json(gasurl, orient='index')
 imports = pd.read_json(importurl, orient='index')
 
-survey=prod.loc['survey date'][0]
+survey = prod.loc['survey date'][0]
 last_updated = str(prod.loc['last updated'][0])
 
 col_names = ['Production', 'Stocks', 'Blend', 'Gasoline', 'Imports']
@@ -97,7 +98,8 @@ def eia():
     stocks = stocksdf.transpose().to_html()
     style = '<style> table {text-align: center;} table thead th {text-align: center;} </style>'
     title = '<head>' + '<title>' + 'Weekly EIA Ethanol Survey ' '</title> ' + '</head>'
-    body = '<h2> Overall Ethanol Breakdown  for week of '+ str(survey) + '</h2>' + overall + ' <h2> Production Breakdown </h2> ' + production + '<h2> Stocks Breakdown </h2>' + stocks
+    body = '<h2> Overall Ethanol Breakdown  for week of ' + str(
+        survey) + '</h2>' + overall + ' <h2> Production Breakdown </h2> ' + production + '<h2> Stocks Breakdown </h2>' + stocks
     update = '<br>' + 'Last Updated: ' + last_updated + '<br>'
     foot = 'Powered by: <a href="https://twitter.com/GrainStats">GrainStats</a> and Made by: <a ' \
            'href="https://twitter.com/shah_neil">Neil Shah</a> '
