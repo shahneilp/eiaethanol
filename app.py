@@ -96,7 +96,7 @@ def eia():
     stocks = stocksdf.transpose().to_html()
     style = '<style> table {text-align: center;} table thead th {text-align: center;} </style>'
     title = '<head>' + '<title>' + 'Weekly EIA Ethanol Survey ' '</title> ' + '</head>'
-    body = '<h2> Overall Ethanol Breakdown  for week of ' + str(
+    body = '<h2> EIA Ethanol Breakdown  for week of ' + str(
         survey) + '</h2>' + overall + ' <h2> Production Breakdown </h2> ' + production + '<h2> Stocks Breakdown </h2>' + stocks
     update = '<br>' + 'Last Updated: ' + last_updated + '<br>'
     foot = 'Powered by: <a href="https://twitter.com/GrainStats">GrainStats</a> and Made by: <a ' \
