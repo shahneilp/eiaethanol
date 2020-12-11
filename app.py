@@ -11,8 +11,6 @@ import pandas as pd
 import pytz
 from flask import Flask
 
-
-
 app = Flask(__name__)
 
 
@@ -97,7 +95,8 @@ def eia():
     style = '<style> table {text-align: center;} table thead th {text-align: center;} </style>'
     title = '<head>' + '<title>' + 'Weekly EIA Ethanol Survey ' '</title> ' + '</head>'
     body = '<h2> EIA Ethanol Breakdown  for week of ' + str(
-        survey) + '</h2>' + overall + ' <h2> Production Breakdown </h2> ' + production + '<h2> Stocks Breakdown </h2>' + stocks
+        survey) + '</h2>' + overall + ' <h2> Production Breakdown </h2> ' \
+        + production + '<h2> Stocks Breakdown </h2>' + stocks
     update = '<br>' + 'Last Updated: ' + last_updated + '<br>'
     foot = 'Powered by: <a href="https://twitter.com/GrainStats">GrainStats</a> and Made by: <a ' \
            'href="https://twitter.com/shah_neil">Neil Shah</a> '
