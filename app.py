@@ -20,7 +20,7 @@ def eia():
 
     # Overall Stats
     blendurl = 'https://api.grainstats.com/eia/blended_ethanol.json'
-    importurl = 'https://api.grainstats.com/eia/ethanol_imports.json'
+    #importurl = 'https://api.grainstats.com/eia/ethanol_imports.json'
     produrl = 'https://api.grainstats.com/eia/ethanol_production.json'
     stocksurl = 'https://api.grainstats.com/eia/ethanol_stocks.json'
     gasurl = 'https://api.grainstats.com/eia/gasoline_demand.json'
@@ -29,13 +29,15 @@ def eia():
     stocks = pd.read_json(stocksurl, orient='index')
     blend = pd.read_json(blendurl, orient='index')
     gas = pd.read_json(gasurl, orient='index')
-    imports = pd.read_json(importurl, orient='index')
+    #imports = pd.read_json(importurl, orient='index')
 
     survey = prod.loc['survey date'][0]
     last_updated = str(prod.loc['last updated'][0])
 
-    col_names = ['Production', 'Stocks', 'Blend', 'Gasoline', 'Imports']
-    df_list = [prod, stocks, blend, gas, imports]
+    #col_names = ['Production', 'Stocks', 'Blend', 'Gasoline', 'Imports']
+    col_names = ['Production', 'Stocks', 'Blend', 'Gasoline']
+    df_list = [prod, stocks, blend, gas]
+    #df_list = [prod, stocks, blend, gas, imports]
     df = pd.concat(df_list, axis=1)
     df.columns = col_names
     df.drop(['country', 'uom', 'region', 'statistic', 'last_week', 'location', 'last updated'], axis=0, inplace=True)
