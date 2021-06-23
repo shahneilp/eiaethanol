@@ -30,7 +30,6 @@ def eia():
     blend = pd.read_json(blendurl, orient='index')
     gas = pd.read_json(gasurl, orient='index')
     #imports = pd.read_json(importurl, orient='index')
-
     survey = prod.loc['survey date'][0]
     last_updated = str(prod.loc['last updated'][0])
 
